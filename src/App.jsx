@@ -612,5 +612,52 @@ function App() {
   //     })}
   //   </ul>
   // </div>;
+  //!SORT()
+  // const prices = [500, 100, 1200, 50, 300];
+  // const ascending = [...prices].sort((a, b) => a - b);
+  // const descending = [...prices].sort((a, b) => b - a);
+  //? Practice
+  // const products = [
+  //   { id: 1, name: "Laptop", price: 1000, stock: 5 },
+  //   { id: 2, name: "Mouse", price: 100, stock: 0 },
+  //   { id: 3, name: "Keyboard", price: 200, stock: 3 },
+  //   { id: 4, name: "Phone", price: 800, stock: 2 },
+  //  ];
+  //Напиши одну функцию processProducts(), которая:
+  //1. Убирает товары, у которых stock === 0.
+  //2. Увеличивает цену оставшихся товаров на 50.
+  //3. Уменьшает stock каждого оставшегося товара на 1.
+  //4. Сортирует товары по цене от меньшей к большей.
+  //5. Возвращает новый массив, не изменяя исходный products.
+  // function processProducts() {
+  //   const filtered = products.filter((p) => p.stock !== 0);
+  //   const counted = filtered.map((p) => ({
+  //     ...p,
+  //     price: p.price + 50,
+  //     stock: p.stock - 1,
+  //   }));
+  //   counted.sort((a, b) => a.price - b.price);
+  //   return counted;
+  // }
+  // const orders = [
+  //   { id: 1, customer: "Alex", total: 500, status: "completed" },
+  //   { id: 2, customer: "Anna", total: 1200, status: "pending" },
+  //   { id: 3, customer: "Max", total: 800, status: "completed" },
+  //   { id: 4, customer: "John", total: 300, status: "completed" },
+  // ];
+  // function getOrder(id) {
+  //   return orders.find((order) => order.id === id);
+  // }
+  // function hasPendingOrders() {
+  //   return orders.some((order) => order.status === "pending");
+  // }
+  // function areAllCompleted() {
+  //   return orders.every((order) => order.status === "completed");
+  // }
+  // function getCompletedRevenue() {
+  //   const CompletedOrd = orders.filter((o) => o.status === "completed");
+  //   return CompletedOrd.reduce((total, order) => total + order.total, 0);
+  // }
+  // console.log(getCompletedRevenue());
 }
 export default App;
