@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TaskForm } from "./TaskForm";
 
 export function TaskManager() {
   const [tasks, setTasks] = useState([]);
@@ -22,6 +23,7 @@ export function TaskManager() {
           <p>{t.priority}</p>
         </div>
       ))}
+      <TaskForm onAdd={(title, priority) => addTask(title, priority)} />
     </div>
   );
 }
