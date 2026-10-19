@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TaskForm } from "./TaskForm";
+import { TaskList } from "./TaskList";
 
 export function TaskManager() {
   const [tasks, setTasks] = useState([]);
@@ -15,15 +16,20 @@ export function TaskManager() {
       },
     ]);
   }
+  function deleteTask(id) {
+    setTasks((prev) => prev.filter((t) => t.id !== id));
+  }
+  function toggleTask(id) {
+    setTasks((prev) =>
+      prev.map((t) => {
+        return t.id === id ? { ...t, completed: !t.completed } : t;
+      }),
+    );
+  }
   return (
     <div>
-      {tasks.map((t) => (
-        <div key={t.id}>
-          <p>{t.text}</p>
-          <p>{t.priority}</p>
-        </div>
-      ))}
-      <TaskForm onAdd={(title, priority) => addTask(title, priority)} />
+      <TaskList tasks={tasks} onDelete={deleteTask} onToggle={toggleTask} />
+      <TaskForm onAdd={addTask} />
     </div>
   );
 }

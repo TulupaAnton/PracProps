@@ -3,6 +3,15 @@ import { useState } from "react";
 export function TaskForm({ onAdd }) {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("Medium");
+
+  function handleAdd() {
+    if (title.trim() === "") {
+      return;
+    }
+    onAdd(title.trim(), priority);
+    setPriority("Medium");
+    setTitle("");
+  }
   return (
     <div>
       <input
@@ -15,7 +24,7 @@ export function TaskForm({ onAdd }) {
         <option value="Medium">Medium</option>
         <option value="High">High</option>
       </select>
-      <button onClick={() => onAdd(title, priority)}>Add!</button>
+      <button onClick={handleAdd}>Add!</button>
     </div>
   );
 }
