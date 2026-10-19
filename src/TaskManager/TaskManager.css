@@ -1,0 +1,335 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap");
+
+:root {
+  --bg: #eef1ec;
+  --surface: #ffffff;
+  --ink: #1f2a2e;
+  --ink-soft: #66757a;
+  --line: #dde3dd;
+  --accent: #0f6b6b;
+  --accent-ink: #ffffff;
+  --accent-wash: #e1efed;
+  --high: #c0472f;
+  --medium: #a97712;
+  --low: #4a6b8c;
+  --radius: 14px;
+  --radius-sm: 9px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141b1d;
+    --surface: #1c2629;
+    --ink: #e8eeea;
+    --ink-soft: #92a3a7;
+    --line: #2c393d;
+    --accent: #4fb3ab;
+    --accent-ink: #0d1819;
+    --accent-wash: #20393a;
+    --high: #ee8a73;
+    --medium: #e0b45a;
+    --low: #8fb1d3;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    "Manrope",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Layout ---------- */
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 48px 20px 64px;
+}
+
+.app__title {
+  margin: 0 0 20px;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Form ---------- */
+.form {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgba(20, 40, 40, 0.05);
+}
+
+.form__input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+}
+.form__input::placeholder {
+  color: var(--ink-soft);
+}
+.form__input:focus-visible {
+  outline-offset: -2px;
+}
+
+.form__select {
+  padding: 0 10px;
+  background: var(--bg);
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.btn-primary {
+  padding: 10px 18px;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    filter 0.15s,
+    transform 0.1s;
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Filters ---------- */
+.filters {
+  display: flex;
+  gap: 4px;
+  margin: 20px 0 12px;
+  padding: 4px;
+  background: var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.filters__btn {
+  flex: 1;
+  padding: 7px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.filters__btn:hover {
+  color: var(--ink);
+}
+.filters__btn--active {
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(20, 40, 40, 0.12);
+}
+
+/* ---------- List ---------- */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list__empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--ink-soft);
+  border: 1.5px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+/* ---------- Item ---------- */
+.task {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 14px 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--low);
+  border-radius: var(--radius);
+}
+.task--high {
+  border-left-color: var(--high);
+}
+.task--medium {
+  border-left-color: var(--medium);
+}
+.task--low {
+  border-left-color: var(--low);
+}
+
+.task__check {
+  flex: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  border: 2px solid var(--ink-soft);
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.task__check::after {
+  content: "";
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid var(--accent-ink);
+  border-bottom: 2px solid var(--accent-ink);
+  transform: translateY(-1px) rotate(-45deg) scale(0);
+  transition: transform 0.15s;
+}
+.task__check:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.task__check:checked::after {
+  transform: translateY(-1px) rotate(-45deg) scale(1);
+}
+
+.task__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.task__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.task--done .task__title {
+  color: var(--ink-soft);
+  text-decoration: line-through;
+}
+
+.task__priority {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.task--high .task__priority {
+  color: var(--high);
+}
+.task--medium .task__priority {
+  color: var(--medium);
+}
+.task--low .task__priority {
+  color: var(--low);
+}
+
+.task__delete {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.task__delete:hover {
+  background: color-mix(in srgb, var(--high) 14%, transparent);
+  color: var(--high);
+}
+
+/* ---------- Stats ---------- */
+.stats {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.stats__item {
+  flex: 1;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.stats__item--accent {
+  background: var(--accent-wash);
+  border-color: transparent;
+}
+.stats__value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.stats__label {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 420px) {
+  .form {
+    flex-wrap: wrap;
+  }
+  .form__input {
+    flex-basis: 100%;
+  }
+  .form__select,
+  .btn-primary {
+    flex: 1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
