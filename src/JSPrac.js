@@ -6,14 +6,14 @@ const products = [
   { id: 5, name: "Laptop", price: 32000, stock: 1, category: "computers" },
 ];
 function getCatalogSummary(products) {
-  const filterdProducts = products.filter(
+  const filteredProducts = products.filter(
     (p) => p.category === "accessories" && p.stock > 0,
   );
-  const discondProdcts = filterdProducts.map((p) => ({
+  const discountedProducts = filteredProducts.map((p) => ({
     ...p,
     price: p.price * 0.9,
   }));
-  const sortedItems = discondProdcts.sort((a, b) => a.price - b.price);
+  const sortedItems = discountedProducts.sort((a, b) => a.price - b.price);
   const totalSum = sortedItems.reduce(
     (total, item) => total + item.price * item.stock,
     0,
