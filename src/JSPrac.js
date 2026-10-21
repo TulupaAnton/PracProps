@@ -5,19 +5,28 @@ const products = [
   { id: 4, name: "Webcam", price: 2200, stock: 2, category: "accessories" },
   { id: 5, name: "Laptop", price: 32000, stock: 1, category: "computers" },
 ];
-function getCatalogSummary(products) {
-  const filteredProducts = products.filter(
-    (p) => p.category === "accessories" && p.stock > 0,
+// function getCatalogSummary(products) {
+//   const filteredProducts = products.filter(
+//     (p) => p.category === "accessories" && p.stock > 0,
+//   );
+//   const discountedProducts = filteredProducts.map((p) => ({
+//     ...p,
+//     price: p.price * 0.9,
+//   }));
+//   const sortedItems = discountedProducts.sort((a, b) => a.price - b.price);
+//   const totalSum = sortedItems.reduce(
+//     (total, item) => total + item.price * item.stock,
+//     0,
+//   );
+//   return { items: sortedItems, totalValue: totalSum };
+// }
+// console.log(getCatalogSummary(products));
+function getCheapestProducts(products) {
+  const filteredProducts = products.filter((p) => p.stock > 0);
+  const sortedProdducts = filteredProducts.toSorted(
+    (a, b) => a.price - b.price,
   );
-  const discountedProducts = filteredProducts.map((p) => ({
-    ...p,
-    price: p.price * 0.9,
-  }));
-  const sortedItems = discountedProducts.sort((a, b) => a.price - b.price);
-  const totalSum = sortedItems.reduce(
-    (total, item) => total + item.price * item.stock,
-    0,
-  );
-  return { items: sortedItems, totalValue: totalSum };
+  const slicedProsucts = sortedProdducts.slice(0, 2);
+  return slicedProsucts;
 }
-console.log(getCatalogSummary(products));
+console.log(getCheapestProducts(products));
