@@ -52,14 +52,107 @@
 // const unique = new Set(numbers);
 
 // console.log(unique); // Set {1, 2, 3, 4}
-const students = [
-  { name: "Alex", subjects: ["Math", "Physics"] },
-  { name: "Anna", subjects: ["Math", "History"] },
-  { name: "Max", subjects: ["Physics", "Programming"] },
+// const students = [
+//   { name: "Alex", subjects: ["Math", "Physics"] },
+//   { name: "Anna", subjects: ["Math", "History"] },
+//   { name: "Max", subjects: ["Physics", "Programming"] },
+// ];
+// function getUniqueSubjects(students) {
+//   const allSubjects = students.flatMap((s) => s.subjects);
+//   const result = [...new Set(allSubjects)];
+//   return result;
+// }
+// console.log(getUniqueSubjects(students));
+
+// const skills = new Set(["HTML", "CSS", "JavaScript"]);
+// // function addSkill(skill) {
+// //   if (skills.has(skill)) {
+// //     return "Skill already exists";
+// //   } else {
+// //     skills.add(skill);
+// //     return "skill added";
+// //   }
+// // }
+// // console.log(addSkill("prt"));
+// function removeSkill(skill) {
+//   if (skills.delete(skill)) {
+//     return "Skill removed";
+//   } else {
+//     return "Skill not found";
+//   }
+// }
+// // console.log(removeSkill("LOLs"));
+// const orders = [
+//   {
+//     id: 1,
+//     status: "completed",
+//     products: [
+//       { name: "Mouse", price: 600, quantity: 2 },
+//       { name: "Keyboard", price: 1200, quantity: 1 },
+//     ],
+//   },
+//   {
+//     id: 2,
+//     status: "pending",
+//     products: [{ name: "Monitor", price: 7800, quantity: 1 }],
+//   },
+//   {
+//     id: 3,
+//     status: "completed",
+//     products: [
+//       { name: "Mouse", price: 600, quantity: 1 },
+//       { name: "Webcam", price: 2200, quantity: 2 },
+//     ],
+//   },
+// ];
+// function analyzeOrders(orders) {
+//   const filteredProd = orders.filter((o) => o.status === "completed");
+//   const flat = filteredProd.flatMap((p) => p.products);
+//   const unique = [...new Set(flat.map((o) => o.name))];
+//   const total = flat.reduce(
+//     (total, item) => total + item.price * item.quantity,
+//     0,
+//   );
+//   return { uniqueProducts: unique, totalRevenue: total };
+// }
+// console.log(analyzeOrders(orders));
+const developers = [
+  {
+    name: "Alex",
+    tasks: [
+      { title: "Header", hours: 3, completed: true },
+      { title: "Login", hours: 8, completed: false },
+    ],
+  },
+  {
+    name: "Anna",
+    tasks: [
+      { title: "Database", hours: 12, completed: true },
+      { title: "API", hours: 6, completed: true },
+    ],
+  },
+  {
+    name: "Max",
+    tasks: [
+      { title: "Footer", hours: 2, completed: false },
+      { title: "Dashboard", hours: 10, completed: true },
+    ],
+  },
 ];
-function getUniqueSubjects(students) {
-  const allSubjects = students.flatMap((s) => s.subjects);
-  const result = [...new Set(allSubjects)];
-  return result;
+function analyzeDevelopers(developers) {
+  const tasks = developers.flatMap((t) => t.tasks);
+  const filtered = tasks.filter((t) => t.completed);
+  const totalHours = filtered.reduce((total, item) => total + item.hours, 0);
+  const NameOfLongestTask = filtered
+    .toSorted((a, b) => b.hours - a.hours)
+    .slice(0, 2)
+    .map((n) => n.title);
+  const isIsntcomplete = tasks.some((t) => t.completed === false);
+  return {
+    completedTasks: filtered.length,
+    totalHours: totalHours,
+    topTasks: NameOfLongestTask,
+    hasUnfinished: isIsntcomplete,
+  };
 }
-console.log(getUniqueSubjects(students));
+console.log(analyzeDevelopers(developers));
