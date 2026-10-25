@@ -116,43 +116,77 @@
 //   return { uniqueProducts: unique, totalRevenue: total };
 // }
 // console.log(analyzeOrders(orders));
-const developers = [
+// const developers = [
+//   {
+//     name: "Alex",
+//     tasks: [
+//       { title: "Header", hours: 3, completed: true },
+//       { title: "Login", hours: 8, completed: false },
+//     ],
+//   },
+//   {
+//     name: "Anna",
+//     tasks: [
+//       { title: "Database", hours: 12, completed: true },
+//       { title: "API", hours: 6, completed: true },
+//     ],
+//   },
+//   {
+//     name: "Max",
+//     tasks: [
+//       { title: "Footer", hours: 2, completed: false },
+//       { title: "Dashboard", hours: 10, completed: true },
+//     ],
+//   },
+// ];
+// function analyzeDevelopers(developers) {
+//   const tasks = developers.flatMap((t) => t.tasks);
+//   const filtered = tasks.filter((t) => t.completed);
+//   const totalHours = filtered.reduce((total, item) => total + item.hours, 0);
+//   const NameOfLongestTask = filtered
+//     .toSorted((a, b) => b.hours - a.hours)
+//     .slice(0, 2)
+//     .map((n) => n.title);
+//   const isIsntcomplete = tasks.some((t) => t.completed === false);
+//   return {
+//     completedTasks: filtered.length,
+//     totalHours: totalHours,
+//     topTasks: NameOfLongestTask,
+//     hasUnfinished: isIsntcomplete,
+//   };
+// }
+// console.log(analyzeDevelopers(developers));
+const projects = [
+  { id: 1, title: "Portfolio", hours: 12, status: "done", priority: "high" },
+  { id: 2, title: "Shop", hours: 20, status: "progress", priority: "high" },
+  { id: 3, title: "Weather App", hours: 6, status: "done", priority: "low" },
+  { id: 4, title: "Landing", hours: 8, status: "done", priority: "medium" },
   {
-    name: "Alex",
-    tasks: [
-      { title: "Header", hours: 3, completed: true },
-      { title: "Login", hours: 8, completed: false },
-    ],
-  },
-  {
-    name: "Anna",
-    tasks: [
-      { title: "Database", hours: 12, completed: true },
-      { title: "API", hours: 6, completed: true },
-    ],
-  },
-  {
-    name: "Max",
-    tasks: [
-      { title: "Footer", hours: 2, completed: false },
-      { title: "Dashboard", hours: 10, completed: true },
-    ],
+    id: 5,
+    title: "Dashboard",
+    hours: 15,
+    status: "progress",
+    priority: "medium",
   },
 ];
-function analyzeDevelopers(developers) {
-  const tasks = developers.flatMap((t) => t.tasks);
-  const filtered = tasks.filter((t) => t.completed);
-  const totalHours = filtered.reduce((total, item) => total + item.hours, 0);
-  const NameOfLongestTask = filtered
+function analyzeProjects(projects) {
+  const filteredP = projects.filter((p) => p.status === "done");
+  const sortedP = filteredP
     .toSorted((a, b) => b.hours - a.hours)
-    .slice(0, 2)
-    .map((n) => n.title);
-  const isIsntcomplete = tasks.some((t) => t.completed === false);
+    .map((p) => p.title);
+  const totalHours = filteredP.reduce((total, i) => total + i.hours, 0);
+  const isCompleted = projects.some(
+    (p) => p.status === "progress" && p.priority === "high",
+  );
+  const isAllComplited = projects.every((p) => p.status === "done");
+  const findObj = projects.find((p) => p.id === 3);
+
   return {
-    completedTasks: filtered.length,
+    completedTitles: sortedP,
     totalHours: totalHours,
-    topTasks: NameOfLongestTask,
-    hasUnfinished: isIsntcomplete,
+    hasHighPriorityPending: isCompleted,
+    allCompleted: isAllComplited,
+    projectById: findObj,
   };
 }
-console.log(analyzeDevelopers(developers));
+console.log(analyzeProjects(projects));
