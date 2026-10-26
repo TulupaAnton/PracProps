@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap");
+/*@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap");
 
 :root {
   --bg: #eef1ec;
@@ -329,7 +329,7 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  * {/
     transition: none !important;
   }
-}
+}*/
