@@ -1,11 +1,18 @@
 import { useState } from "react";
+import { MovieCard } from "./MovieCard";
 
 export function MovieManager() {
   const [movies, setMovies] = useState([]);
   const [inputText, setInputText] = useState("");
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
-  const visibleMovies = movies.filter((m) => {});
+  const visibleMovies = movies.filter((m) => {
+    if (showFavoritesOnly) {
+      return m.favorite;
+    }
+    return true;
+  });
+  const favoriteCount = movies.filter((m) => m.favorite === true).length;
   function addMovie() {
     if (!inputText.trim()) {
       return;
@@ -38,14 +45,19 @@ export function MovieManager() {
         onChange={(e) => setInputText(e.target.value)}
       />
       <button onClick={() => addMovie()}>Add</button>
-      {movies.map((m) => (
-        <div key={m.id}>
-          <p>{m.title}</p>
-          {m.favorite === true ? <p>Like</p> : <p>Not Like</p>}
-          <button onClick={() => deleteMovie(m.id)}>Delete</button>
-          <button onClick={() => addFavorite(m.id)}>Like!</button>
-        </div>
+
+      {visibleMovies.map((m) => (
+        <MovieCard
+          key={m.id}
+          movie={m}
+          onDelete={deleteMovie}
+          onLike={addFavorite}
+        ></MovieCard>
       ))}
+      <button onClick={() => setShowFavoritesOnly((prev) => !prev)}>
+        Show Favorite
+      </button>
+      <p>Count:{favoriteCount}</p>
     </div>
   );
 }
