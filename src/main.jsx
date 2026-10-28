@@ -1,7 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { Timer } from "./timer";
+import { TitleChange } from "./TitleChange/TitleChange";
+// import { Timer } from "./timer";
 // import { TaskManager } from "./TaskManager/taskManager";
 // import { First } from "./1";
 // import App from "./App.jsx";
@@ -19,6 +20,7 @@ createRoot(document.getElementById("root")).render(
     {/* <TodoApp /> */}
     {/* <TaskManager /> */}
     {/* <MovieManager /> */}
-    <Timer />
+    {/* <Timer /> */}
+    <TitleChange />
   </StrictMode>,
 );

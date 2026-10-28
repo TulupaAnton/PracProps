@@ -24,7 +24,8 @@ export function Timer() {
       </button>
       <button
         onClick={() => {
-          (setIsRunning(false), setSeconds(0));
+          setIsRunning(false);
+          setSeconds(0);
         }}
       >
         Reset
