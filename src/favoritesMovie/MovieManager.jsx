@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCard";
 
 export function MovieManager() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(() => {
+    const saved = localStorage.getItem("movies");
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    return [];
+  });
+  useEffect(() => {
+    localStorage.setItem("movies", JSON.stringify(movies));
+  }, [movies]);
   const [inputText, setInputText] = useState("");
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
