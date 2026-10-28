@@ -20,7 +20,14 @@ export function Timer() {
     <div>
       <h2>Прошло секунд: {seconds}</h2>
       <button onClick={() => setIsRunning((prev) => !prev)}>
-        {isRunning == true ? "Pause" : "Resume"}
+        {isRunning ? "Pause" : "Resume"}
+      </button>
+      <button
+        onClick={() => {
+          (setIsRunning(false), setSeconds(0));
+        }}
+      >
+        Reset
       </button>
     </div>
   );
