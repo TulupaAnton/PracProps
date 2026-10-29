@@ -1,7 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { TitleChange } from "./TitleChange/TitleChange";
+import { WindowWidth } from "./Window/WindowWidth";
+import { Area } from "./Area/Area";
+// import { TitleChange } from "./TitleChange/TitleChange";
 // import { Timer } from "./timer";
 // import { TaskManager } from "./TaskManager/taskManager";
 // import { First } from "./1";
@@ -21,6 +23,8 @@ createRoot(document.getElementById("root")).render(
     {/* <TaskManager /> */}
     {/* <MovieManager /> */}
     {/* <Timer /> */}
-    <TitleChange />
+    {/* <TitleChange /> */}
+    {/* <WindowWidth /> */}
+    <Area />
   </StrictMode>,
 );
