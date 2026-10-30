@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { WindowWidth } from "./Window/WindowWidth";
 import { Area } from "./Area/Area";
+import { OnlineStatus } from "./OnlineStatus/OnlineStatus";
+
 // import { TitleChange } from "./TitleChange/TitleChange";
 // import { Timer } from "./timer";
 // import { TaskManager } from "./TaskManager/taskManager";
@@ -25,6 +27,7 @@ createRoot(document.getElementById("root")).render(
     {/* <Timer /> */}
     {/* <TitleChange /> */}
     {/* <WindowWidth /> */}
-    <Area />
+    {/* <Area /> */}
+    <OnlineStatus />
   </StrictMode>,
 );
